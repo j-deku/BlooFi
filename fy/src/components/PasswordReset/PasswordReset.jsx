@@ -1,70 +1,70 @@
 // PasswordResetPage.js
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
-import { Grid, Typography, Button, TextField, Link } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Grid, Typography, Button, TextField } from "@mui/material";
+import { styled } from "@mui/system";
 import { StoreContext } from '../../context/StoreContext';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    height: '100vh',
-    backgroundImage: 'linear-gradient(to bottom, #3a3d41, #22252a)',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  formContainer: {
-    backgroundColor: '#fff',
-    padding: theme.spacing(4),
-    borderRadius: theme.spacing(1),
-    boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  textField: {
-    marginBottom: theme.spacing(2),
-  },
-  button: {
-    marginBottom: theme.spacing(2),
-  },
+const Root = styled(Grid)({
+  height: '100vh',
+  backgroundImage: 'linear-gradient(to bottom, #3a3d41, #22252a)',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+});
+
+const FormContainer = styled("div")(({ theme }) => ({
+  backgroundColor: '#fff',
+  padding: theme.spacing(4),
+  borderRadius: theme.shape.borderRadius,
+  boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+}));
+
+const StyledForm = styled("form")({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+});
+
+const StyledTextField = styled(TextField)(({ theme }) => ({
+  marginBottom: theme.spacing(2),
+}));
+
+const StyledButton = styled(Button)(({ theme }) => ({
+  marginBottom: theme.spacing(2),
 }));
 
 const PasswordReset = () => {
-  const classes = useStyles();
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
-  const {url} = useContext(StoreContext);
+  const { url } = useContext(StoreContext);
   const { register, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
-      name: '',
       email: '',
-      password: '',
     },
   });
-  
+
   const handleFormSubmit = async (data) => {
     try {
-      const response = await axios.post(`${url}/api/user/password-reset`, data);
+      await axios.post(`${url}/api/user/password-reset`, data);
       setSuccess(true);
+      setError(null);
     } catch (error) {
-      setError(error.response.data.message);
+      setError(error.response?.data?.message || "An error occurred");
+      setSuccess(false);
     }
   };
 
   return (
-    <Grid container className={classes.root}>
+    <Root container>
       <Grid item xs={12} sm={6} md={4} lg={4} xl={2}>
-        <div className={classes.formContainer}>
+        <FormContainer>
           <Typography variant="h4" component="h1" align="center" gutterBottom>
             Reset Password
           </Typography>
-          <form className={classes.form} onSubmit={handleSubmit(handleFormSubmit)}>
-            <TextField
-              className={classes.textField}
+          <StyledForm onSubmit={handleSubmit(handleFormSubmit)}>
+            <StyledTextField
               label="Email"
               {...register("email", {
                 required: "Email is required",
@@ -75,24 +75,25 @@ const PasswordReset = () => {
               })}
               error={!!errors.email}
               helperText={errors.email?.message}
+              fullWidth
             />
             {error && (
-              <Typography variant="body1" align="center" gutterBottom style={{ color: 'red' }}>
+              <Typography variant="body1" align="center" gutterBottom color="error">
                 {error}
               </Typography>
             )}
             {success && (
-              <Typography variant="body1" align="center" gutterBottom style={{ color: 'green' }}>
+              <Typography variant="body1" align="center" gutterBottom color="success.main">
                 Password reset link sent to your email!
               </Typography>
             )}
-            <Button className={classes.button} variant="contained" color="primary" type="submit">
+            <StyledButton variant="contained" color="primary" type="submit">
               Send Password Reset Link
-            </Button>
-          </form>
-        </div>
+            </StyledButton>
+          </StyledForm>
+        </FormContainer>
       </Grid>
-    </Grid>
+    </Root>
   );
 };
 

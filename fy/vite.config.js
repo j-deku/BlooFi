@@ -237,4 +237,9 @@ export default defineConfig({
       '/api': 'http://localhost:5000',
     },
   },
+    build: {
+    rollupOptions: {
+      external: ["@mui/material"],
+    },
+  },
 })
