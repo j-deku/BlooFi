@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./components/Navbar/Navbar";
+import Navbar from "./Components/Navbar/Navbar";
 import { Route, Routes } from "react-router-dom";
 import Add from "./Pages/Add/Add";
 import Lists from "./Pages/Lists/Lists";
@@ -7,7 +7,7 @@ import Orders from "./Pages/Orders/Orders";
 
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from "react-toastify";
-import Sidebar from "./components/SideBar/Sidebar";
+import Sidebar from "./Components/SideBar/Sidebar";
 const App = () => {
   
   return (
