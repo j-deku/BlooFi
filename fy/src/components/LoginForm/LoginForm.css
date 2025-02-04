@@ -1,0 +1,229 @@
+.login-container{
+    position: fixed;
+    display: grid;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s;
+    top: 0;
+    left: 0;
+    background-color: #00000090;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.form{
+    place-self: center;
+    width: max(36vw, 400px);
+    color: #808080;
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 10px 15px;
+    border-radius: 50px;
+    font-size: 15px;
+    animation: fadeIn 0.5s;
+}
+
+.form .close{
+    padding: 5px;
+    font-size: 16px;
+    width: 40px;
+    font-weight: 500;
+    margin-left: 0;
+    margin-bottom: -30px;
+    height: 35px;
+    border-radius:20px 0 0;
+    background-color: transparent;
+    color: black;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+.form .close:hover{
+    background-color: firebrick;
+    color: white;
+}
+.form h1{
+    text-align: center;
+    justify-content: space-between;
+    text-decoration: underline;
+    color: #504e4e;
+    font-weight: bold;
+    font-size: 20px;
+}
+.form label{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 20px;
+    color: gray;
+}
+.form hr{
+    margin: 5px auto;
+    border-style: inset;
+    width: 40%;
+}
+.form img{
+    width: 25px;
+    margin-bottom: -6px;
+    margin-right: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.form p{
+    font-weight: 500;
+    padding-left: 20px;
+    color: black;
+}
+.form p:hover{
+    background-color:whitesmoke;
+}
+.form-icons{
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: rgb(76, 75, 75);
+    &:hover{
+        background-color: white;
+    }
+}
+.form input{
+    display: inline;
+    width: max(27vw, 260px);
+    font-family: 'Poppins',sans-serif;
+    font-size: 14px;
+    padding: 8px 10px;
+    outline: none;
+    border: 1px solid #b3b1b1;
+    margin-bottom: 15px;
+    margin-left: 18px;
+    flex: 1;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+.form input:focus{
+    border: 2px solid skyblue;
+}
+
+.form button{
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    align-items: center;
+    font-weight: 800;
+    padding: 10px;
+    width: max(27vw, 260px);
+    margin-left: 48px;
+    background-color: tomato;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-condition{
+    margin-top: -20px;
+}
+.login-condition input{
+    width: 30px;
+    cursor: pointer;
+    float: left;
+}
+.form .p2{
+    font-size: max(1.5vw, 18px);
+    display: inline;
+
+    font-weight: 200;
+    cursor:default;
+}
+.form .p3{
+    font-weight: 300;
+    cursor: default;
+    font-size: max(1.6vw, 18px);
+}
+.form .p3 span{
+    color: tomato;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.form .loading-spinner {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #999;
+  }
+  button:disabled {
+    cursor: not-allowed;
+    background-color: #ccc;
+  }
+  
+
+@media (max-width:1050px) {
+    
+    .form{
+        margin-top: 30px;
+        width: max(22vw, 350px);
+    }
+    .form input{
+        width: max(17vw,220px);
+    }
+    .form button{
+        width: max(17vw,220px);
+    }
+    .login-condition input{
+        margin-left: -85px;
+        margin-right: -100px;
+    }
+}
+
+@media (max-width:750px) {
+
+    .form{
+        margin-top: 30px;
+        width: max(22vw, 350px);
+    }
+    .form input{
+        width: max(17vw,240px);
+    }
+    .form button{
+        width: max(17vw,240px);
+    }
+    .form .p2{
+        font-size: max(1vw,14px);
+    }
+    .form .p3{
+        font-size: max(1vw,16px);
+    }
+    .login-condition input{
+        margin-left: -85px;
+        margin-right: -100px;
+    }
+
+}
+@media (max-width:500px) {
+    .login-condition input{
+        margin-left: -85px;
+        margin-right: -100px;
+    }
+}
+
+@media (max-width:400px) {
+    .form{
+        margin-top: 30px;
+        width: max(20vw, 300px);
+    }
+    .login-condition{
+        font-size: 18px;
+        font-weight: 500;
+    }
+    .login-condition input{
+        margin-left: -25vw;
+        margin-right: -30vw;
+    }
+    .login-container button{
+        margin-left: 10px;
+    }
+}

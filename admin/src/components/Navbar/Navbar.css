@@ -1,0 +1,53 @@
+.navbar{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    padding: 8px 4%;
+}
+.navbar .logo{
+    width: max(8%,80px);
+    cursor: pointer;
+}
+.navbar .profile{
+    width: 80px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.5s;
+    &:hover{
+        filter: drop-shadow(0 0 2em #ccc);
+    }
+}
+.navbar .drop{
+    position: absolute;
+    right: 20px;
+    top: 100px;
+    background-color: rgb(39, 134, 165);
+    color: white;
+    padding: 20px 30px;
+    border: 1px solid whitesmoke;
+    outline: 1px solid rgb(182, 182, 182);
+    border-radius: 5px;
+    text-align: start;
+    align-items: start;
+    box-shadow: 0 0 10px gray;
+}
+.drop li{
+    list-style: none;
+    margin: 10px;
+
+    & a{
+        text-decoration: none;
+        color: white;
+        font-family: 'Poppins',sans-serif;
+        font-weight: bold;
+        padding: 10px;
+        &:hover{
+            color: tomato;
+        }
+    }
+}
+hr{
+    width: 100%;
+    border: inset;
+    background-color: #ccc;
+}

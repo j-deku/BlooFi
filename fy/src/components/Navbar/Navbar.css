@@ -1,0 +1,506 @@
+.navbar{
+    display: flex;
+    position: fixed;
+    padding: 10px;
+    justify-content: space-between;
+    align-items: center;
+    -webkit-user-select: none;
+    user-select: none;
+    padding-left: 25px;
+    z-index: 2;
+    border-radius: 5px;
+    width: 85.5%;
+    top: -10px;
+    background-color:   rgb(250, 250, 233);
+    transition: background-color 0.5s ease, border-bottom 0.5s ease, padding-bottom 0.5s ease;
+}
+.scroll-active{
+    background-color:  rgb(250, 250, 233);
+    border-bottom: 2px solid tomato;
+}
+.scroll-inactive{
+    border-bottom: none;
+}
+.hamburger .MenuIcon{
+    display: none;
+}
+.navbar .logo{
+    width: max(5vw,80px);
+    cursor: pointer;
+    margin-left: 10px -20px;
+}
+.navbar-menu{
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    color: #49557e;
+    font-size: 20px;
+}
+.navbar-menu Link, ul a{
+    &:hover{
+        background-color: #f4f4f4;
+        border-radius: 10px;
+        color: tomato;
+        font-weight: bold;
+        cursor:pointer;
+        transition: all 0.3s;
+    }
+}
+
+.navbar-right{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-right: -8vw;
+    padding-right: 10px;
+    
+}
+.navbar-right img{
+    cursor: pointer;
+}
+
+.navbar-right .searchDiv{
+    display: inline-flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    box-shadow: 2px 1px 8px #949393;
+    background-color: white;
+    border-radius: 5px;
+    right: 33%;
+    width: 20%;
+    font-family: Arial;
+    transition: 0.8s ease;
+    animation: fadeIn 0.8s ease;
+    z-index: 1;
+}
+
+.searchDiv img{
+    margin-left: 10px;
+}
+.searchDiv .faSearch{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
+.searchDiv input{
+    padding: 10px;
+    font-family: Arial;
+    transition: 0.8s ease;
+    animation: fadeIn 0.8s ease;
+    font-size: 18px;
+    border: none;
+    width: 40%;
+    outline: none;
+}
+.searchDiv input:focus{
+    width: 90%;
+    transition: 2s ease;
+} 
+.searchDiv:focus-within{
+    width: 45%;
+    transition: 2s ease;
+}
+.searchDiv.show, .inputSearch.show{
+    display: inline-block;
+}
+.searchDiv.hide, .inputSearch.hide{
+    display:none;
+}
+
+.navbar button{
+    background-color: tomato;
+    font-size: 16px;
+    color: #49557e;
+    font-weight: 600;
+    border: 1px solid tomato;
+    border-radius: 5px;
+    padding: 8px 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.navbar button:hover{
+    background-color: #fff4f2;
+}
+
+.navbar-menu .active{
+    padding: 2px;
+    border-bottom: 2px solid #49557e;
+    border-radius: 7px;
+    transition: 0.3s;
+}
+
+.navbar li{
+    cursor: pointer;
+}
+
+.navbar-search-icon .dot{
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    background-color: tomato;
+    border-radius: 50%;
+    top: 32px;
+    right: 21%;
+    cursor: pointer;
+}
+.sidebar-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgb(47, 47, 47, 0.6);
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+ .hamburger-content{ 
+    display: none;
+    position: fixed;
+}
+.navbar-profile{
+    position: relative;
+}
+p.profileName{
+    margin-top: -12px;
+    font-size: 1rem;
+}
+.navbar-profile-dropdown{
+    position: absolute;
+    display: none;
+    right: 0;
+    z-index: 1;
+}
+.navbar-profile:hover .navbar-profile-dropdown{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #fff2ef;
+    padding: 12px 25px;
+    border-radius: 4px;
+    border: 1px solid tomato;
+    box-shadow: 2px 1px 5px rgb(47, 47, 47);
+    outline: 2px solid white;
+    list-style: none;
+}
+.navbar-profile-dropdown li{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+}
+
+.navbar-profile-dropdown img{
+    width: 20px;
+}
+.navbar-profile-dropdown li:hover{
+    color: tomato;
+}
+.profile-picture{
+    width: 38px;
+    border-radius: 50%;
+}
+.profileName{
+    margin-right: 30px;
+}
+
+@media (max-width:2150px) {
+    .navbar-search-icon .dot{
+        top: 28px;
+        right: 20%;
+    }
+}
+@media (max-width:1400px) {
+    .searchDiv, .searchDiv input{
+        margin-right: max(10px, 3vw);
+    }
+}
+@media (max-width:1250px) {
+    .profileName{
+        display: none;
+    }
+    .welcome{
+        margin-right: -30px;
+    }
+    @media (max-width:1100px) {
+        .welcome{
+            margin-right: -50px;
+        }
+    }
+}
+
+@media (max-width:1050px) {
+    .navbar .logo{
+        width: 50px;
+    }
+    .navbar-menu{
+        gap: 20px;
+        font-size: 17px;
+    }
+    .navbar-right{
+        gap: 30px;
+    }
+    .navbar-right img{
+        width: 20px;
+    }
+    .navbar-right button{
+        padding: 5px 15px;
+    }
+    .navbar-search-icon .dot{
+        top: 28px;
+        right: 23%;
+    }
+    p.profileName{
+        margin-top: -15px;
+        font-size: 14px;
+    }
+    .navbar-profile-dropdown li{
+        gap: 15px;
+    }
+    .welcome{
+        display: none;
+    }
+}
+
+@media (max-width:900px) {
+    .navbar .logo{
+        width: 50px;
+        margin-right: 20px;
+    }
+    .navbar-menu{
+        gap: 10px;
+        font-size: 16px;
+    }
+    .navbar-right{
+        gap: 20px;
+    }
+    .navbar-right img{
+        width: 28px;
+    }
+    .navbar-right button{
+        padding: 6px 16px;
+        font-size: 16px;
+        margin-right: -5px;
+    }
+    p.profileName{
+        margin-top: -25px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width:750px) {
+    .navbar-right{
+        margin-left: max(8vw, 30px);
+        margin-right: -200px;
+    }
+    .navbar-right .searchDiv{
+        display: none;
+    }
+    
+    .navbar-right .themeButton{
+        display: none;
+    }
+
+ .hamburger .MenuIcon{
+        display: block;
+        width: 30px;
+        left: 0;
+        -webkit-user-select: none;
+        user-select: none;
+        margin-left: 20px;
+        cursor: pointer;
+    }
+    .navbar-menu{
+    display: none;
+    }
+    .sidebar-overlay{
+        display: block;
+        background-color: rgba(10, 50, 63, 0.5);
+    }
+.show{
+    transform: translateX(0);
+}    
+.hide{
+    transform: translateX(100%);
+}
+    .hamburger-content{
+        position: fixed;
+        display:flex;
+        flex-direction: column;
+        width: 80%;
+        height: 120vh;
+        top: 0;
+        right: -5px;
+        gap: 25px;
+        padding:10px 30px;
+        border-radius: 5px 0px 0px 5px;
+        background-color:whitesmoke;
+        box-shadow: 0px 1px 5px rgb(73, 72, 72);
+        color: #49557e;
+        z-index: 5;
+        cursor:default;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+    }
+    .hide{
+        transform: translateX(100%);
+    }
+    .show{
+        transform: translateX(0);
+    }
+
+    .hamburger-content .navbar-profile-dropdown{
+    position: absolute;
+    display: none;
+    right: 0;
+    z-index: 1;
+}
+.navbar-profile:hover .navbar-profile-dropdown{
+    display: flex;
+    flex-direction: column;
+    gap: 12vw;
+    background-color: #fff2ef;
+    padding: 12px 25px;
+    border-radius: 4px;
+    border: 1px solid tomato;
+    box-shadow: 2px 1px 5px rgb(47, 47, 47);
+    outline: 2px solid white;
+    list-style: none;
+}
+.navbar-profile-dropdown li{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+.navbar-profile-dropdown hr{
+    margin-top: -60px;
+    margin-bottom: -60px;
+}
+.navbar-profile-dropdown img{
+    width: 25px;
+}
+.navbar-profile-dropdown li:hover{
+    color: tomato;
+}
+    .hamburger-content a{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .hamburger-content a:hover{
+        color: rgb(243, 171, 183);
+    }
+    .hamburger-content .signIn{
+        display: none;
+    }
+    .navbar-search-icon .dot{
+        top: 28px;
+        right: 32%;
+    }
+    .closeHamContent{
+        font-size: 25px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .closeHamContent .active .Hamburger-content{
+        transform: translateX(100%);
+    }
+
+    .searchInput{
+        display: inline-flex;
+        border-radius: 2px;
+        box-shadow: 2px 0px 5px #b9b8b8;
+        width: 100%;
+        justify-content: center;
+        align-items:center ;
+        padding: 20px;
+        margin-top: 40px;
+        height: 30px;
+    }
+    .searchInput input{
+        border: none;
+        outline: none;
+        width: 100%;
+        padding: 10px 10px;
+        background-color: transparent;
+        font-size: 18px;
+    }
+    .navbar-right .searchImage{
+        display: none;
+    }
+}
+@media (max-width:600px) {
+    .navbar-right{
+        margin-right: max(-50vw, -160px);
+    }
+    .navbar-right button{
+        padding: 5px 14px;
+        margin-right: 5vw;
+        margin-left: max(-4vw, -100px);
+    }
+    .navbar-profile-dropdown hr{
+        margin-top: -50px;
+        margin-bottom: -50px;
+    }
+    .navbar-right .searchImage{
+        display: none;
+    }
+}
+@media (max-width:500px) {
+    .navbar-right{
+        margin-right: max(-30vw, -100px);
+    }
+    .navbar-right button{
+        padding: 5px 14px;
+        margin-right: 5vw;
+        margin-left: max(-4vw, -100px);
+    }
+    .navbar-profile-dropdown li{
+        gap: 10px;
+    }
+    .navbar-profile-dropdown hr{
+        margin-top: -40px;
+        margin-bottom: -40px;
+    }
+    .navbar-right .searchImage{
+        display: none;
+    }
+    .navbar-search-icon .dot{
+        top: 28px;
+        right: 38%;
+    }
+}
+
+@media (max-width:400px) {
+    .navbar-right{
+        margin-right: -30%;
+    }
+    .navbar-right button{
+        display: none;
+    }
+    .hamburger-content .signIn{
+        display: block;
+        margin-bottom: 10px;
+        padding: 6px 16px;
+    }
+        .navbar-search-icon .dot{
+        top: 30px;
+        right: 32%;
+    }
+    .navbar-right .searchImage{
+        display: none;
+    }
+}
+
+@media (max-width:399px) {
+    .navbar-search-icon .dot{
+        top: 30px;
+        right: 35%;
+    }
+    .navbar-right .searchImage{
+        display: none;
+    }
+}

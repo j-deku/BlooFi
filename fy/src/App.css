@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+:root{
+  --tomato:tomato
+  --o:orange
+  --b:beige
+  --s:whitesmoke
+  --sb:skyblue
+  --dsb:deepskyblue
+  --gb:#1A73E8
+  --d:#171717
+  --lw:rgb(255,255,255,0.5)
+  --wr:#FFFFFF
+  --sg:#ECEFF1
+  --lg:#F8F9FA
+  --bg:rgb(250, 250, 233)
+  --wl:#f8f9fa
+  --ld:rgba(0,0,0,0.5)
+  --ldd:rgba(0,0,0,0.8)
+  --purple:#6F42C1
+  --teal:#20C997
+  --yellow:#FFC107
+  --orange: #FF9800
+  --darkGray:#343A40
+  --warning:#DC3545
+  --success:#28A745
+  --trust:#0171C2
+  --smRed:rgba(255, 0, 0, 0.5)
+  --primary:#1A73E8
+  --red:#FF0000
+  --lightBeige:#f0f8ff
+  --feelGray:#666
+  --feelGraySoft:#555
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Outfit;
+  -webkit-user-drag: none;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background-color: rgb(250, 250, 233);
+  overflow-x: hidden;
+  font-size: 16px;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.app{
+  width: 85%;
+  margin:auto;
+}
+
+@keyframes fadeIn{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut{
+  100%{
+    opacity: 0;
+  }
+  0%{
+    opacity: 1;
+  }
+}
+
+/* src/styles/wow.css */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (max-width:750px) {
+  body{
+    overflow-x: hidden;
+    scrollbar-width: none;  
+  }
+}

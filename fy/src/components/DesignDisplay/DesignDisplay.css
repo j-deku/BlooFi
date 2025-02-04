@@ -1,0 +1,29 @@
+.design-display{
+    margin-top: 30px;
+}
+.design-display h2{
+    font-size: max(2vw,24px);
+    font-weight: 600;
+}
+.design-display-list{
+    display: grid;
+    grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+    margin-top: 30px;
+    gap: 30px;
+    row-gap: 50px;
+}
+
+.error-message{
+    justify-content: center;
+    text-align: center;
+    margin-top: 60px;
+    align-items: center;
+    color:  firebrick;
+    font-size: max(1.5vw, 18px);
+    font-weight: bold;
+    padding: 30px 30px;
+    border: 3px solid rgb(178,34,34,0.6);
+    filter: drop-shadow( 0 0 0.5em red);
+    border-radius: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
