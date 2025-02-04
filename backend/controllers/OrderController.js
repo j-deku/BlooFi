@@ -1,4 +1,4 @@
-import orderModel from "../models/orderModel.js";
+import orderModel from "../models/OrderModel.js";
 import userModel from '../models/UserModel.js';
 import Paystack from 'paystack-api'
 
