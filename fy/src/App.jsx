@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import Cart from "./Pages/Cart/Cart";
 import PlaceOrder from "./Pages/PlaceOrder/PlaceOrder";
-import MyOrders from "./Pages/MyOrder/MyOrders";
+import MyOrders from "./Pages/MyOrders/MyOrders";
 import Verify from "./Pages/Verify/Verify";
 import Footer from "./components/Footer/Footer";
 import NewsFeed from "./components/NewsFeed/NewsFeed";
