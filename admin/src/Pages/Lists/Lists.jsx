@@ -7,7 +7,7 @@ import { assets } from "../../assets/assets";
 const Lists = () => {
   const [list, setList] = useState([]);
 
-  const url = "http://localhost:5000";
+  const url = "https://bloofi-backend.onrender.com";
   
   const fetchList = async () => {
     const response = await axios.get(`${url}/api/design/list`);

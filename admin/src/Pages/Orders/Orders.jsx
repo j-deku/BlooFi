@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
-  const url = "http://localhost:5000";
+  const url = "https://bloofi-backend.onrender.com";
 
   const fetchAllOrders = async () => {
     try {
