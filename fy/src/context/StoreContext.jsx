@@ -6,7 +6,7 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState({});
-  const url = "http://localhost:5000";
+  const url = "https://bloofi-backend.onrender.com";
   const [token, setToken] = useState("");
   const [cookie, setCookie] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
