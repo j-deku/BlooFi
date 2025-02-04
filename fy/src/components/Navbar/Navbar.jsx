@@ -12,7 +12,7 @@ import {
   FaSearch,
 } from "react-icons/fa";
 import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
+import CloseIcon from '@mui/icons-material/Close';
 import PersonIcon from "@mui/icons-material/Person";
 
 const Navbar = ({ setLogin }) => {
