@@ -4,9 +4,6 @@ import App from "./App.jsx";
 import "./App.css";
 import { BrowserRouter } from "react-router-dom";
 import StoreContextProvider from "./context/StoreContext.jsx";
-import { GoogleOAuthProvider } from "@react-oauth/google";
-
-const clientID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 // Service Worker Registration
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
@@ -27,10 +24,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       v7_relativeSplatPath: true,
     }}
   >
-    <StoreContextProvider clientID={clientID}>
-    <GoogleOAuthProvider>
+    <StoreContextProvider>
       <App />
-    </GoogleOAuthProvider>
     </StoreContextProvider>
   </BrowserRouter>
 );
