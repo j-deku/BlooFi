@@ -17,7 +17,7 @@ const App = () => {
       <div className="app-content">
         <Sidebar />
         <Routes>
-          <Route path="/add" element={<Add />} />
+          <Route path="/add" element={<Add/>} />
           <Route path="/list" element={<Lists />} />
           <Route path="/order" element={<Orders />} />
         </Routes>

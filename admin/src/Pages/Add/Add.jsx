@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Add.css";
 import { assets } from "../../assets/assets";
 import axios from "axios";
@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 const Add = () => {
   const url = "https://bloofi-backend.onrender.com";
-  
+
   const [image, setImage] = useState(false);
   const [data, setData] = useState({
     name: "",
@@ -123,5 +123,4 @@ const Add = () => {
     </div>
   );
 };
-
 export default Add;
