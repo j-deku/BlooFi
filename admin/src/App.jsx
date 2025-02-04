@@ -6,7 +6,7 @@ import Orders from "./Pages/Orders/Orders";
 
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from "react-toastify";
-import Sidebar from "./components/SideBar/Sidebar";
+import Sidebar from "./components/Sidebar/Sidebar";
 const App = () => {
   return (
     <div>
