@@ -6,7 +6,7 @@ const paystack = new Paystack(process.env.PAYSTACK_SECRET_KEY)
 
 //placing user order for frontend
 const placeOrder = async (req, res) => {
-    const frontend_url ="http://localhost:5173";
+    const frontend_url ="https://bloofi-fy.onrender.com";
   
     if (!req.body.userId || !req.body.items || !req.body.amount || !req.body.address) {
       return res.status(400).json({ success: false, message: "Missing required fields" });
