@@ -266,3 +266,15 @@
 {"level":"info","message":"Request: GET /api/user/login"}
 {"level":"info","message":"Request: GET /api/user/login"}
 {"level":"info","message":"Request: GET /api/user/login"}
+{"level":"info","message":"Request: GET /socket.io/?EIO=4&transport=websocket"}
+{"level":"info","message":"Request: GET /socket.io/?EIO=4&transport=websocket"}
+{"level":"info","message":"Request: GET /socket.io/?EIO=4&transport=websocket"}
+{"level":"info","message":"Request: GET /socket.io/?EIO=4&transport=websocket"}
+{"level":"info","message":"Request: GET /socket.io/?EIO=4&transport=websocket"}
+{"level":"info","message":"Request: GET /socket.io/?EIO=4&transport=websocket"}
+{"level":"info","message":"Request: GET /socket.io/?EIO=4&transport=websocket"}
+{"level":"info","message":"Request: GET /socket.io/?EIO=4&transport=websocket"}
+{"level":"info","message":"Request: GET /socket.io/?EIO=4&transport=websocket"}
+{"level":"info","message":"Request: GET /socket.io/?EIO=4&transport=websocket"}
+{"level":"info","message":"Request: GET /socket.io/?EIO=4&transport=websocket"}
+{"level":"info","message":"Request: GET /socket.io/?EIO=4&transport=websocket"}

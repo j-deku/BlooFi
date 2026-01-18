@@ -10,7 +10,7 @@ if ("serviceWorker" in navigator) {
     navigator.serviceWorker
       .register("/service-worker.js")
       .then((registration) =>
-        console.log("SW registered: ", registration.scope)
+        console.log("SW registered: ", registration.scope),
       )
       .catch((err) => console.log("SW registration failed: ", err));
   });
@@ -27,5 +27,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <StoreContextProvider>
       <App />
     </StoreContextProvider>
-  </BrowserRouter>
+  </BrowserRouter>,
 );
