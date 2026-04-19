@@ -1,99 +1,211 @@
+# BlooFi - E-Commerce Platform
 
-## 🔗 Live Demo
+**BlooFi** is a full-stack e-commerce platform specializing in balloon and floral decor. Registered users can browse, search, and order products with a fast-loading, responsive UI. Built with a focus on clean user experience, secure authentication, and reliable payment processing.
 
-[Visit the Live App](https://bloofi.vercel.app)
-# Backend is Currently Not Running(Due to cost)
+![Live](https://img.shields.io/badge/Frontend-Live-brightgreen?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-In%20Development-yellow?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
 
-#🎈 Balloon & Floral Decor E-Commerce
+---
 
-A modern, responsive e-commerce frontend built for a balloon and floral decor business. Experience a full shopping journey — from discovering products to managing your cart — with a focus on clean UI, smooth interactions, and real-world e-commerce flows.
+## Live Demo
 
-Built as a Full Stack MERN-ready frontend, designed for production-level quality and scalability.
+- Storefront: [https://bloofi.vercel.app](https://bloofi.vercel.app)
 
-## 🚀 Features
-- Fully Responsive Design: Looks perfect on mobile, tablet, and desktop.
-- Product Catalog: Browse balloons, floral arrangements, and decor items with high-quality images.
-- Shopping Cart: Add, remove, and manage products seamlessly.
-- Smooth Interactions: Subtle animations and transitions for premium UX.
+---
 
-Backend Ready: Connects easily with a Node.js + Express backend and MongoDB.
-Clean, Scalable Codebase: Modular React components with industry-standard best practices.
+## Screenshots
 
-Performance Optimized: Fast load times, lazy loading, and efficient rendering.
+### Home Page
+<!-- Add screenshot: ./screenshots/home.png -->
 
-## 🌐 Demo
-[Visit the Live App](https://bloofi.vercel.app)
+### Cart Page
+<!-- Add screenshot: ./screenshots/cart.png -->
 
-## 🎬 Feature Highlights
-- Feature	Preview
-- Landing Page	
-- Product Catalog	
-- Shopping Cart	
-- Mobile Responsiveness	
+---
 
-Replace the placeholder URLs with real GIFs/screenshots to showcase your product visually.
+## Features
 
-## 🛠 Tech Stack
-Frontend	Backend Ready	Styling & Animations	State & Routing
-React	Node.js / Express	Tailwind CSS / Styled Components	Redux Toolkit / Context API
-React Router	MongoDB	Framer Motion / CSS Transitions	Formik & Yup
-```bash
-# Structure (frontend)
-src/
-├─ assets/       # Images, icons, static assets
-├─ components/   # Reusable UI components
-├─ pages/        # Page-level components
-├─ redux/        # Redux slices and store (if used)
-├─ utils/        # Utility functions/helpers
-├─ App.jsx       # Main app with routes
-└─ index.jsx     # Entry point
+### Storefront (Registered Users)
+- Browse balloons, floral arrangements, and decor items with category-based filtering
+- Advanced search querying across product names and descriptions
+- Add to cart and manage cart items persistently
+- Secure checkout flow with Paystack payment integration
+- Digital receipts generated after successful orders
+- OAuth social login and JWT-based session management
+- Responsive design for mobile, tablet, and desktop
+
+### Admin Dashboard
+- Manage products (create, update, delete)
+- View and manage all orders and their statuses
+- Manage registered users
+- Full operational oversight from a dedicated admin panel
+
+### Security
+- JWT-based authentication with secure session handling
+- OAuth2 social login integration
+- Protected routes for both user and admin panels
+- Input validation and sanitization on all API endpoints
+
+---
+
+## Tech Stack
+
+**Frontend:**
+
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+
+**Backend:**
+
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+
+**Data & Infra:**
+
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+
+**Auth & Payments:**
+
+![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
+![OAuth](https://img.shields.io/badge/OAuth2-4285F4?style=for-the-badge&logo=google&logoColor=white)
+![Paystack](https://img.shields.io/badge/Paystack-00C3F7?style=for-the-badge&logo=paystack&logoColor=white)
+
+---
+
+## Project Structure
+
 ```
-## ⚡Quick Start
-Prerequisites
-Node.js >= 18
-npm or yarn
+BlooFi/
+|-- frontend/                  # React + Vite frontend
+|   |-- src/
+|   |   |-- pages/           # Home, Product, Cart, Checkout, Admin views
+|   |   |-- components/      # Reusable UI components
+|   |   |-- store/           # Redux state management (cart, auth, products)
+|   |   `-- services/        # API call handlers
+|
+|-- backend/                  # Node.js + Express backend
+|   |-- src/
+|   |   |-- routes/          # API route definitions
+|   |   |-- controllers/     # Business logic
+|   |   |-- middleware/      # Auth, validation, error handling
+|   |   |-- services/        # Paystack integration
+|   |   `-- models/          # MongoDB schema definitions (Mongoose)
+|
+`-- .env.example             # Environment variable template
+```
 
-Installation
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js v18+
+- MongoDB 6+ (or MongoDB Atlas)
+
+### 1. Clone the repository
+
 ```bash
-# Clone the repository
 git clone https://github.com/j-deku/BlooFi.git
-cd fy
-cd admin
-cd backend
+cd BlooFi
 ```
 
-## Install dependencies
+### 2. Set up environment variables
+
 ```bash
-npm install
-# or
-yarn install
+cp .env.example .env
 ```
 
-## Start development server
+Open `.env` and fill in your values:
+
+```env
+# Database
+MONGO_URI=your_mongodb_connection_string
+
+# Auth
+JWT_SECRET=your_jwt_secret
+JWT_EXPIRES_IN=7d
+
+# OAuth
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+
+# Paystack
+PAYSTACK_SECRET_KEY=your_paystack_secret_key
+PAYSTACK_PUBLIC_KEY=your_paystack_public_key
+
+# App
+PORT=5000
+CLIENT_URL=http://localhost:5173
+```
+
+### 3. Install dependencies
+
 ```bash
-npm run sever
+# Backend
+cd backend && npm install
+
+# Frontend
+cd ../fy && npm install
 ```
-Production Build
-npm run build
 
-## 📈 Contribution
-We welcome contributions to enhance this project:
-Fork the repo
-Create a branch: git checkout -b feature/your-feature
+### 4. Run the development servers
 
-Make your changes
 ```bash
-Commit: git commit -m 'Add feature'
+# Start backend (from /backend)
+npm run dev
 
-Push: git push origin main/your-feature
+# Start frontend (from /fy or /admin)
+npm run dev
 ```
-Open a Pull Request
 
-📄 License
+Frontend: `http://localhost:5173`
+Backend: `http://localhost:5000`
 
-MIT License — See LICENSE
+---
 
-🏆 Acknowledgements
-Inspired by modern e-commerce UX/UI design trends
-Built with React, Node.js, MongoDB to simulate production-ready applications
-Built with React, Node.js, and MongoDB to simulate real-world applications
+## User Roles
+
+| Role | Access |
+|------|--------|
+| Guest | Browse products only |
+| Registered User | Browse, search, cart, checkout, order history |
+| Admin | Full product, order, and user management |
+
+---
+
+## Roadmap
+
+- [ ] Full backend deployment
+- [ ] API documentation (Postman/Swagger)
+- [ ] Product reviews and ratings
+- [ ] Order tracking system
+- [ ] Wishlist feature
+- [ ] Email notifications for order updates
+
+---
+
+## Acknowledgments
+
+- [Paystack](https://paystack.com) for payment integration
+- [MongoDB Atlas](https://www.mongodb.com/atlas) for cloud database
+- [Vite](https://vitejs.dev) for ultra-fast frontend builds
+
+---
+
+## Author
+
+**Jeremiah Deku**
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jeremiah-deku-jdek/)
+[![GitHub](https://img.shields.io/badge/GitHub-000?logo=github&logoColor=white)](https://github.com/j-deku)
+[![Email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:jdeku573@gmail.com)
+
+---
+
+## License
+
+This project is licensed under the MIT License.
