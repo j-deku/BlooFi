@@ -11,10 +11,12 @@ import {
   ResendEmail,
   VerifiedEmail,
 } from "../utils/EmailTemplates.js";
+
 // Create token
 const createToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "1d" });
 };
+
 // Register user
 const registerUser = async (req, res) => {
   const { name, password, email } = req.body;
@@ -70,8 +72,8 @@ const registerUser = async (req, res) => {
       return res.json({ success: false, message: "Failed to send email" });
     }
   } catch (error) {
-    console.error(error);
-    res.json({ success: false, message: "Network Unstable" });
+    console.error("Registration error:", error);
+    res.status(500).json({ success: false, message: "Network Unstable" });
   }
 };
 
@@ -88,30 +90,35 @@ const verifyOTP = async (req, res) => {
     }
 
     if (!user) {
-      return res.json({ success: false, message: "User not found" });
+      return res.status(404).json({ success: false, message: "User not found" });
     }
 
-    if (token || (await OTPModel.findOne({ userId, otp }))) {
-      user.verified = true;
-      await user.save();
-      await OTPModel.deleteOne({ userId });
-
-      await sendEmail(user.email, "Successful Verification 🌷", VerifiedEmail(user.name));
-      const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173"; 
-      const redirectUrl = `${FRONTEND_URL}/?name=${encodeURIComponent(user.name)}&email=${encodeURIComponent(user.email)}`;
-      return res.json({
-        success: true,
-        message: "Email verified successfully",
-        redirect: redirectUrl,
-        token: createToken(user._id),
-        user:{ name: user.name, email: user.email },
-      });
+    // Check OTP validity
+    const otpRecord = await OTPModel.findOne({ userId });
+    
+    if (!otpRecord || otpRecord.otp !== otp || new Date() > otpRecord.expiresAt) {
+      return res.status(400).json({ success: false, message: "Invalid or expired OTP" });
     }
 
-    res.json({ success: false, message: "Invalid OTP" });
+    // Mark user as verified
+    user.verified = true;
+    await user.save();
+    await OTPModel.deleteOne({ userId });
+
+    await sendEmail(user.email, "Successful Verification 🌷", VerifiedEmail(user.name));
+    const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
+    const redirectUrl = `${FRONTEND_URL}/?name=${encodeURIComponent(user.name)}&email=${encodeURIComponent(user.email)}`;
+    
+    return res.json({
+      success: true,
+      message: "Email verified successfully",
+      redirect: redirectUrl,
+      token: createToken(user._id),
+      user: { name: user.name, email: user.email },
+    });
   } catch (error) {
-    console.error(error);
-    res.json({ success: false, message: "Network Unstable" });
+    console.error("OTP verification error:", error);
+    res.status(500).json({ success: false, message: "Network Unstable" });
   }
 };
 
@@ -121,7 +128,7 @@ const resendOTP = async (req, res) => {
   try {
     const user = await userModel.findById(userId);
     if (!user) {
-      return res.json({ success: false, message: "User not found" });
+      return res.status(404).json({ success: false, message: "User not found" });
     }
 
     if (user.verified) {
@@ -138,23 +145,23 @@ const resendOTP = async (req, res) => {
       "Email Verification 🌷",
       ResendEmail(user.name, otp, verificationUrl)
     );
-    await OTPModel.updateOne({ userId: user._id }, { otp, expiresAt });
+    await OTPModel.updateOne({ userId: user._id }, { otp, expiresAt }, { upsert: true });
 
     res.json({ success: true, message: "OTP resent successfully" });
   } catch (error) {
-    console.error(error);
-    res.json({ success: false, message: "Network Unstable" });
+    console.error("Resend OTP error:", error);
+    res.status(500).json({ success: false, message: "Network Unstable" });
   }
 };
 
-
+// Login user
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
     const user = await userModel.findOne({ email });
     if (!user) {
-      return res.json({
+      return res.status(404).json({
         success: false,
         message: "No account found with this email. \n Please register first.",
       });
@@ -177,7 +184,7 @@ const loginUser = async (req, res) => {
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.json({
+      return res.status(401).json({
         success: false,
         message: "Invalid email or password.",
       });
@@ -194,14 +201,14 @@ const loginUser = async (req, res) => {
 
   } catch (error) {
     console.error("Login error:", error);
-    res.json({
+    res.status(500).json({
       success: false,
       message: "Something went wrong. Please try again later.",
     });
   }
 };
 
-
+// Google Auth Callback
 const googleAuthCallback = async (req, res) => {
   try {
     console.log("Google Profile Data:", req.user);
@@ -214,9 +221,9 @@ const googleAuthCallback = async (req, res) => {
     }
 
     const { id: googleId, displayName, emails, photos } = req.user;
-    const email = emails?.[0]?.value || null; 
-    const name = displayName || "Google User"; 
-    const avatar = photos?.[0]?.value || ""; 
+    const email = emails?.[0]?.value || null;
+    const name = displayName || "Google User";
+    const avatar = photos?.[0]?.value || "";
 
     if (!email) {
       return res.status(400).json({
@@ -233,38 +240,30 @@ const googleAuthCallback = async (req, res) => {
         email,
         avatar,
         googleId,
-        verified: true, 
+        verified: true,
       });
     }
 
     const token = createToken(user._id);
     await sendEmail(email, "Welcome Back 🌷", EmailWelcome(user.name));
 
-    const frontendURL = process.env.FRONTEND_URL || "http://localhost:5173"; 
+    const frontendURL = process.env.FRONTEND_URL || "http://localhost:5173";
 
     res.redirect(
       `${frontendURL}/?token=${token}&name=${encodeURIComponent(user.name)}&email=${encodeURIComponent(user.email)}&avatar=${encodeURIComponent(avatar)}`
     );
   } catch (error) {
     console.error("Error during Google authentication:", error.message);
-
-    return res.status(500).json({
-      success: false,
-      message: "Internal Server Error",
-    });
+    const frontendURL = process.env.FRONTEND_URL || "http://localhost:5173";
+    res.redirect(`${frontendURL}/?error=google_auth_failed`);
   }
 };
 
 // Google login failure
 const googleAuthFailure = (req, res) => {
-  res.status(401).json({
-    success: false,
-    message: "Failed to authenticate with Google",
-  });
+  const frontendURL = process.env.FRONTEND_URL || "http://localhost:5173";
   console.error("Google authentication failed:", req.query.error);
-  // Redirect to login page with error message
-  res.redirect(process.env.FRONTEND_URL + "/?error=google_auth_failed");
+  res.redirect(`${frontendURL}/?error=google_auth_failed`);
 };
 
-
-export { registerUser, verifyOTP, resendOTP, loginUser,  googleAuthCallback, googleAuthFailure };
+export { registerUser, verifyOTP, resendOTP, loginUser, googleAuthCallback, googleAuthFailure };
